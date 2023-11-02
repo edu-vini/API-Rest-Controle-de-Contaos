@@ -8,11 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pessoas")
+@RequestMapping("api/pessoas")
 public class PessoaController {
     @Autowired
     private PessoaService service;
-
     @PostMapping
     public Pessoa savePessoa(@RequestBody Pessoa pessoa){
         return service.save(pessoa);
@@ -28,7 +27,11 @@ public class PessoaController {
     @PutMapping("/{id}")
     public Pessoa updatePessoa(@RequestBody Pessoa pessoa, @PathVariable Integer id){
         pessoa.setId(id);
-        return savePessoa(pessoa);
+        return service.save(pessoa);
+    }
+    @DeleteMapping("/{id}")
+    public Pessoa deletePessoa(@PathVariable Integer id){
+        return service.deleteByID(id);
     }
 
 }

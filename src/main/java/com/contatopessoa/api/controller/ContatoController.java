@@ -5,11 +5,13 @@ import com.contatopessoa.api.model.Pessoa;
 import com.contatopessoa.api.service.ContatoService;
 import com.contatopessoa.api.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("api")
 public class ContatoController {
     @Autowired
     private ContatoService contatoService;

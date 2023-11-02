@@ -3,14 +3,15 @@ package com.contatopessoa.api.service;
 import com.contatopessoa.api.model.Contato;
 import com.contatopessoa.api.model.ContatoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class ContatoService {
     @Autowired
     private ContatoRepository repository;
-    public Contato save( Contato contato){
+    public Contato save(Contato contato){
         return repository.save(contato);
     }
     public List<Contato> findAll(){

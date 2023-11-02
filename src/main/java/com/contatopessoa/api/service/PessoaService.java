@@ -3,14 +3,14 @@ package com.contatopessoa.api.service;
 import com.contatopessoa.api.model.Pessoa;
 import com.contatopessoa.api.model.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-
+@Service
 public class PessoaService {
     @Autowired
     private PessoaRepository repository;
-
     public Pessoa save(Pessoa pessoa){
         return repository.save(pessoa);
     }

@@ -8,7 +8,7 @@ public class Contato {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     private Integer tipo;
-    private Integer contato;
+    private Long contato;
     @ManyToOne
     @JoinColumn(name="pessoa_id", nullable = false)
     private Pessoa pessoa;
@@ -29,11 +29,11 @@ public class Contato {
         this.tipo = tipo;
     }
 
-    public Integer getContato() {
+    public Long getContato() {
         return contato;
     }
 
-    public void setContato(Integer contato) {
+    public void setContato(Long contato) {
         this.contato = contato;
     }
 
