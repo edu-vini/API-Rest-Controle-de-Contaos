@@ -15,8 +15,6 @@ public class Pessoa {
     private String cep;
     private String cidade;
     private String uf;
-    @OneToMany(mappedBy="pessoa")
-    private List<Contato> contatos;
     public Integer getId() {
         return id;
     }
@@ -53,7 +51,6 @@ public class Pessoa {
     public void setUf(String uf) {
         this.uf = uf;
     }
-
     @Override
     public String toString() {
         return "Pessoa{" +

@@ -15,11 +15,13 @@ import java.util.List;
 public class ContatoController {
     @Autowired
     private ContatoService contatoService;
+    @Autowired
     private PessoaService pessoaService;
-    @PostMapping("/pessoas/{id}/contatos")
-    public Contato saveContato(@RequestBody Contato contato, @PathVariable Integer id ){
+    @PostMapping("/pessoas/{idPessoa}/contatos")
+    public Contato saveContato(@RequestBody Contato contato, @PathVariable Integer idPessoa ){
 
-        Pessoa pessoa = pessoaService.findById(id).get();
+        Pessoa pessoa = pessoaService.findById(idPessoa).get();
+
         contato.setPessoa(pessoa);
 
         return contatoService.save(contato);
@@ -34,8 +36,19 @@ public class ContatoController {
     }
     @PutMapping("/contatos/{id}")
     public Contato updateContato(@RequestBody Contato contato, @PathVariable Integer id){
-        contato.setId(id);
-        return contatoService.save(contato);
+        Contato contatoBd = contatoService.findById(id).get();
+
+        Integer tipo = contato.getTipo();
+        Long numeroContato = contato.getContato();
+
+        if(tipo != null){
+            contatoBd.setTipo(tipo);
+        }
+        if(numeroContato != null) {
+            contatoBd.setContato(numeroContato);
+        }
+
+        return contatoService.save(contatoBd);
     }
     @DeleteMapping("/contatos/{id}")
     public Contato deleteContato(@PathVariable Integer id){

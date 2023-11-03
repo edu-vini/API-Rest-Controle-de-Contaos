@@ -1,6 +1,8 @@
 package com.contatopessoa.api.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 public class Contato {
@@ -11,8 +13,8 @@ public class Contato {
     private Long contato;
     @ManyToOne
     @JoinColumn(name="pessoa_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Pessoa pessoa;
-
     public Integer getId() {
         return id;
     }
@@ -44,4 +46,6 @@ public class Contato {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
+
+
 }

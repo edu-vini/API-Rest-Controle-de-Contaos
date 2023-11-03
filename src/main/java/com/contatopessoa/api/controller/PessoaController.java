@@ -26,8 +26,31 @@ public class PessoaController {
     }
     @PutMapping("/{id}")
     public Pessoa updatePessoa(@RequestBody Pessoa pessoa, @PathVariable Integer id){
-        pessoa.setId(id);
-        return service.save(pessoa);
+
+        Pessoa pessoaBd = service.findById(id).get();
+
+        String nome = pessoa.getNome();
+        String endereco = pessoa.getEndereco();
+        String cep = pessoa.getCep();
+        String cidade = pessoa.getCidade();
+        String uf = pessoa.getUf();
+
+        if(nome != null){
+            pessoaBd.setNome(nome);
+        }
+        if(endereco != null){
+            pessoaBd.setEndereco(endereco);
+        }
+        if(cep != null){
+            pessoaBd.setCep(cep);
+        }
+        if(cidade != null){
+            pessoaBd.setCidade(cidade);
+        }
+        if(uf != null){
+            pessoaBd.setUf(uf);
+        }
+        return service.save(pessoaBd);
     }
     @DeleteMapping("/{id}")
     public Pessoa deletePessoa(@PathVariable Integer id){
